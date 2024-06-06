@@ -11,19 +11,11 @@ import pandas as pd
 import numpy as np
 
 
-def import_data():
-    # read xlsx file
-    file_path = 'CalgaryDogBreeds.xlsx'
-    df = pd.read_excel(file_path)
-    breeds = set(breed.lower() for breed in df['Breed'].unique())
-    return df, breeds
-
-
-def prompt_user(breeds):
+def prompt_user(df):
     while True:
         try:
             input_dog_breed = input("Please enter a dog breed: ").strip().lower()
-            if input_dog_breed in breeds:
+            if input_dog_breed in df['Breed'].unique():
                 dog_breed = input_dog_breed
                 break
             else:
@@ -36,15 +28,17 @@ def prompt_user(breeds):
 def main():
 
     # Import data here
-    df, breeds = import_data()
-    print(breeds)
+    df = pd.read_excel('CalgaryDogBreeds.xlsx', index_col=[0, 1])  # read xlsx file
+    df['Breed'] = df['Breed'].str.lower()  # Convert dog breeds to lower case
 
     print("ENSF 692 Dogs of Calgary")
 
     # User input stage
-    dog_breed = prompt_user(breeds)
+    # dog_breed = prompt_user(df)
+    dog_breed = 'beagle'
 
     print(dog_breed)
+    print(df)
     # Data anaylsis stage
 
 if __name__ == '__main__':
