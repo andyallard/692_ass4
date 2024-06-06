@@ -11,20 +11,19 @@ import pandas as pd
 import numpy as np
 
 
-def prompt_user(breeds):
-    """
-    Prompt user for the school. User can enter either the school name or school code
+def import_data():
+    # read xlsx file
+    file_path = 'CalgaryDogBreeds.xlsx'
+    df = pd.read_excel(file_path)
+    breeds = set(breed.lower() for breed in df['Breed'].unique())
+    return df, breeds
 
-    Arguments: breeds (dict): Dictionary of school codes and names
-    Returns: 
-        - school_code (int): school code for user's choice
-        - school_name (str): school name for user's choice
-    """
+
+def prompt_user(breeds):
     while True:
         try:
-            input_dog_breed = input("Please enter the high school name or"
-                                      " school code: ").strip().lower()
-            if input_dog_breed in breeds:  # check for the school code
+            input_dog_breed = input("Please enter a dog breed: ").strip().lower()
+            if input_dog_breed in breeds:
                 dog_breed = input_dog_breed
                 break
             else:
@@ -37,18 +36,15 @@ def prompt_user(breeds):
 def main():
 
     # Import data here
-
-    # read school names and codes from the .csv file and combine them into a dict named breeds
-    file_path = '../specs/CalgaryDogBreeds.xlsx'
-    df = pd.read_excel(file_path)
-    print(df)
-    breeds = df['Breed'].unique()
+    df, breeds = import_data()
     print(breeds)
 
     print("ENSF 692 Dogs of Calgary")
 
     # User input stage
+    dog_breed = prompt_user(breeds)
 
+    print(dog_breed)
     # Data anaylsis stage
 
 if __name__ == '__main__':
