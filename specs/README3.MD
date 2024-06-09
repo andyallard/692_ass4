@@ -8,9 +8,10 @@
 * Find values in a dataset
 * Operate on data in Pandas
 
-<img src="Sample Output Assignment 4.PNG">
-
 ## 💻 Program Specifications
+
+<img src="Sample Output Assignment 4.PNG" alt='Sample Output'>
+
 The City of Calgary tracks information on the most popular licensed dog breeds in the city.
 You are being asked to design a terminal-based application for computing and printing statistics based on a provided breed input.
 The provided dataset has been modified from the City of Calgary data:
